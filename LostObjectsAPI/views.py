@@ -10,7 +10,7 @@ from rest_framework import status
 @api_view(['GET', 'POST'])
 def lost_object(request, format=None):
     if request.method == 'GET':
-        los = LostObject.objects.all()
+        los = LostObject.objects.all()[:15]
         if len(los) == 0:
             return Response(status=status.HTTP_404_NOT_FOUND)
         serializer = LostObjectSerializer(los, many=True)
@@ -118,7 +118,7 @@ def lostobject_by_name(request, obj_name, format=None):
 @api_view(['GET', 'POST'])
 def student(request, format=None):
     if request.method == 'GET':
-        ss = Student.objects.all()
+        ss = Student.objects.all()[:15]
         if len(ss) == 0:
             return Response(status=status.HTTP_404_NOT_FOUND)
         serializer = StudentSerializer(ss, many=True)
